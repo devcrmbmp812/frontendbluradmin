@@ -35,6 +35,23 @@
           return menuItems.concat(staticMenuItems);
         };
 
+        /** @auth role function */
+        this.getAuthorizedMenuItems = function(user) {
+          var states = defineMenuItemStates();
+          var menuItems = states.filter(function(item) {
+              return item.level == 0 && _.includes(item.authRoles, user.role);
+          });
+      
+          menuItems.forEach(function(item) {
+              var children = states.filter(function(child) {
+                  return child.level == 1 && child.name.indexOf(item.name) === 0;
+              });
+              item.subMenu = children.length ? children : null;
+          });
+      
+          return menuItems.concat(staticMenuItems);
+        };
+
         this.shouldMenuBeCollapsed = shouldMenuBeCollapsed;
         this.canSidebarBeHidden = canSidebarBeHidden;
 
@@ -77,6 +94,7 @@
                 order: meta.order,
                 icon: meta.icon,
                 stateRef: s.name,
+                authRoles: s.params ? s.params.authRoles : undefined
               };
             })
             .sort(function(a, b) {
@@ -94,6 +112,8 @@
       }
 
     };
+
+    
 
   }
 })();

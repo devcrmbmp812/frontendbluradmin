@@ -24,7 +24,10 @@
           icon: 'ion-gear-a',
           order: 100,
         },
-        authenticate: true
+        authenticate: true,
+        params: {                
+          authRoles: ['admin','superadmin']   
+        }
       });
   }
 

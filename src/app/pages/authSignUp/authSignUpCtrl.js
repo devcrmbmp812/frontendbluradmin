@@ -30,7 +30,7 @@
               console.log(data);
               if(data.success == true)
               {
-                localStorage.setObject('token',data.token);
+                localStorage.setObject('userinfo',data.user);
                 $state.go('main.dashboard');
               }
               else

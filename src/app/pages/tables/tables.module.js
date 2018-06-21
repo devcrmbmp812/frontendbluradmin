@@ -21,7 +21,10 @@
           icon: 'ion-grid',
           order: 300,
         },
-        authenticate: true
+        authenticate: true,
+        params: {
+          authRoles: ['admin','superadmin']
+        }
       }).state('main.tables.basic', {
         url: '/basic',
         templateUrl: 'app/pages/tables/basic/tables.html',
@@ -29,7 +32,10 @@
         sidebarMeta: {
           order: 0,
         },
-        authenticate: true
+        authenticate: true,
+        params: {
+          authRoles: ['admin','superadmin']
+        }
       }).state('main.tables.smart', {
         url: '/smart',
         templateUrl: 'app/pages/tables/smart/tables.html',
@@ -37,7 +43,10 @@
         sidebarMeta: {
           order: 100,
         },
-        authenticate: true
+        authenticate: true,
+        params: {
+          authRoles: ['admin','superadmin']
+        }
       });
     $urlRouterProvider.when('/main/tables', '/main/tables/basic');
   }

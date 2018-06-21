@@ -26,7 +26,7 @@
             console.log(data);
             if(data.token)
             {
-              localStorage.setObject('token', data.token);
+              localStorage.setObject('userinfo', data.user);
               $state.go('main.dashboard');
             }
             else

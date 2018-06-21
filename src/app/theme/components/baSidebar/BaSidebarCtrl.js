@@ -9,9 +9,10 @@
     .controller('BaSidebarCtrl', BaSidebarCtrl);
 
   /** @ngInject */
-  function BaSidebarCtrl($scope, baSidebarService) {
+  function BaSidebarCtrl($scope, baSidebarService,localStorage) {
 
-    $scope.menuItems = baSidebarService.getMenuItems();
+    var userinfo = localStorage.getObject('userinfo');
+    $scope.menuItems = baSidebarService.getAuthorizedMenuItems(userinfo);
     $scope.defaultSidebarState = $scope.menuItems[0].stateRef;
 
     $scope.hoverItem = function ($event) {
