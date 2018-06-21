@@ -1,26 +1,30 @@
 <div class="login" ng-controller="authSignInCtrl as signInVm">
   <main class="auth-main">
     <div class="auth-block">
-      <h1>Sign in to Blur Admin</h1>
-      <a ui-sref="authSignUp" class="auth-link">New to Blur Admin? Sign up!</a>
+      <h1>Sign in to Admin</h1>
+      <a ui-sref="authSignUp" class="auth-link">New to Admin? Sign up!</a>
 
-      <form class="form-horizontal" ng-submit="signInVm.logar()">
-        <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-
-          <div class="col-sm-10">
-            <input type="email" ng-model="signInVm.user" class="form-control" id="inputEmail3" placeholder="Email">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+      <form class="form-horizontal" ng-submit="signInVm.login(signInVm.formname.$valid)" name="signInVm.formname" novalidate>
+        <div class="form-group" ng-class="{ 'has-error' : signInVm.formname.usernameemail.$invalid && !signInVm.formname.usernameemail.$pristine }">
+          <label for="usernameemail" class="col-sm-2 control-label">Email</label>
 
           <div class="col-sm-10">
-            <input type="password" ng-model="signInVm.passWord" class="form-control" id="inputPassword3" placeholder="Password">
+            <input type="email" ng-model="signInVm.usernameemail" ng-focus="signInVm.signinfailed = false" class="form-control" name="usernameemail" placeholder="Email" required>
+            <p ng-show="signInVm.formname.usernameemail.$invalid && !signInVm.formname.usernameemail.$pristine" class="help-block">Enter a valid email.</p>
+            <p ng-show="signInVm.formname.usernameemail.$error.required && !signInVm.formname.usernameemail.$pristine" class="help-block">Email is required.</p>
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error' : signInVm.formname.password.$invalid && !signInVm.formname.password.$pristine }">
+          <label for="password" class="col-sm-2 control-label">Password</label>
+
+          <div class="col-sm-10">
+            <input type="password" ng-model="signInVm.password" ng-focus="signInVm.signinfailed = false" class="form-control" name="password" placeholder="Password" required>
+            <p ng-show="signInVm.formname.password.$error.required && !signInVm.formname.password.$pristine" class="help-block">Password is required.</p>
+          </div>
+        </div>
+        <div class="form-group" ng-class=" { 'has-error' : signInVm.signinfailed }">
           <div class="col-sm-offset-2 col-sm-10">
+            <p ng-show="signInVm.signinfailed" class="help-block">Login Failed.</p>
             <button type="submit" class="btn btn-default btn-auth">Sign in</button>
             <a href class="forgot-pass">Forgot password?</a>
           </div>

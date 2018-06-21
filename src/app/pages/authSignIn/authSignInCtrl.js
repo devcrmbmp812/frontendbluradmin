@@ -5,10 +5,10 @@
     .controller('authSignInCtrl', authSignInCtrl);
 
   /** @ngInject */
-  function authSignInCtrl($scope, localStorage, $state) {
+  function authSignInCtrl($scope, localStorage, $state, $http) {
     var vm = this;
 
-    vm.logar = logar;
+    vm.login = login;
 
     init();
 
@@ -16,16 +16,30 @@
       localStorage.clear();
     }
 
-    function logar() {
-      var dadosUser = {
-        user: vm.user,
-        passWord: vm.passWord
-      };
-      localStorage.setObject('dataUser', dadosUser);
-      $state.go('main.dashboard');
+    function login(isValid) {
+      
+      if(isValid) {
+        var userinfo = { username : vm.usernameemail, password : vm.password }
+        
+        $http.post("http://localhost:3010/api/signin",userinfo)
+          .success(function(data,status,headers,config) { 
+            console.log(data);
+            if(data.token)
+            {
+              localStorage.setObject('token', data.token);
+              $state.go('main.dashboard');
+            }
+            else
+            {
+              vm.signinfailed = true;
+            }
+            
+          })
+          .error(function(data,status,header,config){
+            console.log(data);
+          })
+      }
     }
-
-
   }
 
 })();
