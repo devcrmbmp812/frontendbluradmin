@@ -1,6 +1,6 @@
 /**
- * @author l.azevedo
- * created on 29.07.2017
+ * @author m.umair
+ * created on 22.06.2018
  */
 (function() {
   'use strict';
@@ -15,8 +15,10 @@
         url: '/main',
         templateUrl: 'app/pages/main/main.html',
         redirectTo: 'main.dashboard',
-        authenticate: true
-
+        authenticate: true,
+        params: {
+          authRoles: ['admin','superadmin']
+        }
 
       });
   }

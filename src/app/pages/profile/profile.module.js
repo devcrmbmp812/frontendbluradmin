@@ -16,8 +16,14 @@
         title: 'Profile',
         templateUrl: 'app/pages/profile/profile.html',
         controller: 'ProfilePageCtrl',
-        authenticate: true
+        sidebarMeta: {
+          icon: 'ion-grid',
+          order: 300,
+        },
+        authenticate: true,
+        params: {
+          authRoles: ['admin','superadmin']
+        }
       });
   }
-
 })();

@@ -19,7 +19,10 @@
         sidebarMeta: {
           order: 300,
         },
-        authenticate: true
+        authenticate: true,
+        params: {
+          authRoles: ['admin','superadmin']
+        }
       });
   }
 

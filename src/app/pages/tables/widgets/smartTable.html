@@ -1,10 +1,20 @@
 <div class="horizontal-scroll">
   <div class="form-group select-page-size-wrap ">
-    <label>Rows on page
-      <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
-              ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
-      </select>
-    </label>
+    <div class="col-md-6">
+        <label>Rows on page
+            <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                    ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+            </select>
+            
+          </label>
+    </div>
+    <div class="col-md-6">
+        <div class="add-row-editable-table">
+            <button class="btn btn-primary" ng-click="open('app/pages/ui/modals/modalTemplates/largeModal.html', 'lg')">Add row</button>
+          </div>
+    </div>
+    
+    
   </div>
   <table class="table" st-table="smartTableData">
     <thead>

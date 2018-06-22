@@ -9,7 +9,7 @@
       .controller('TablesPageCtrl', TablesPageCtrl);
 
   /** @ngInject */
-  function TablesPageCtrl($scope, $filter, editableOptions, editableThemes) {
+  function TablesPageCtrl($scope, $filter, editableOptions, editableThemes, $uibModal) {
 
     $scope.smartTablePageSize = 10;
 
@@ -702,6 +702,19 @@
         group: null
       };
       $scope.users.push($scope.inserted);
+    };
+
+    $scope.open = function (page, size) {
+      $uibModal.open({
+        animation: true,
+        templateUrl: page,
+        size: size,
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
     };
 
     editableOptions.theme = 'bs3';
